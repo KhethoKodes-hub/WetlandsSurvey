@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rand Water: Wetlands & Waste Management Community Survey</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f9ff;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0066cc 0%, #0099cc 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .header h2 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .survey-form {
+            padding: 30px;
+        }
+        
+        .question-container {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .question-number {
+            display: inline-block;
+            background-color: #0066cc;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #004080;
+        }
+        
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            transition: all 0.2s;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .option:hover {
+            background-color: #e6f2ff;
+            border-color: #0066cc;
+        }
+        
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+        
+        .other-input {
+            margin-left: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+            display: none;
+        }
+        
+        .checkbox-option {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .submit-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .submit-btn {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+        
+        .submit-btn:hover {
+            background-color: #004d99;
+        }
+        
+        .required {
+            color: #e63946;
+            margin-left: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            background-color: #f8fafc;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            .survey-form {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 16px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Wetlands & Waste Management Community Survey at Sebokeng</h1>
+            <h2>Rand Water: Drop by Drop Campaign</h2>
+            <p>Thank you for participating in this survey. Your responses will help improve waste management and protect wetlands in our community.</p>
+        </div>
+        
+        <form class="survey-form" id="surveyForm">
+            <!-- Question 1 -->
+            <div class="question-container">
+                <div class="question-text">
+                    <span class="question-number">1</span>
+                    Is household refuse (garbage) collected regularly in your area?
+                </div>
+                <div class="options-container">
+                    <label class="option">
+                        <input type="radio" name="q1" value="Yes, regularly" required>
+                        Yes, regularly
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="Sometimes">
+                        Sometimes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="Rarely">
+                        Rarely
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="Not at all">
+                        Not at all
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="question-container">
+                <div class="question-text">
+                    <span class="question-number">2</span>
+                    If garbage is not collected, where do households usually dispose of their waste?
+                </div>
+                <div class="options-container">
+                    <label class="option">
+                        <input type="radio" name="q2" value="Open spaces">
+                        Open spaces
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="Wetlands or near water areas">
+                        Wetlands or near water areas
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="Roadside dumping">
+                        Roadside dumping
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="Burning waste">
+                        Burning waste
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="We keep it at home">
+                        We keep it at home
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="Other" id="q2-other">
+                        Other: 
+                        <input type="text" class="other-input" id="q2-other-input" placeholder="Please specify">
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="question-container">
+                <div class="question-text">
+                    <span class="question-number">3</span>
+                    Are there any official or safe dumping areas or refuse bins available near your home?
+                </div>
+                <div class="options-container">
+                    <label class="option">
+                        <input type="radio" name="q3" value="Yes" required>
+                        Yes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="No">
+                        No
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="Not sure">
+                        Not sure
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="question-container">
+                <div class="question-text">
+                    <span class="question-number">4</span>
+                    Do you think dumping waste in wetlands or near rivers affects water quality and community health?
+                </div>
+                <div class="options-container">
+                    <label class="option">
+                        <input type="radio" name="q4" value="Yes" required>
+                        Yes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="No">
+                        No
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="Not sure">
+                        Not sure
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="question-container">
+                <div class="question-text">
+                    <span class="question-number">5</span>
+                    What problems have you noticed because of dumping near wetlands or water areas?
+                    <span style="font-weight: normal; display: block; margin-top: 5px; color: #666; font-size: 16px;">(You may choose more than one)</span>
+                </div>
+                <div class="options-container">
+                    <label class="option checkbox-option">
+                        <input type="checkbox" name="q5" value="Bad smells">
+                        Bad smells
+                    </label>
+                    <label class="option checkbox-option">
+                        <input type="checkbox" name="q5" value="Flooding">
+                        Flooding
+                    </label>
+                    <label class="option checkbox-option">
+                        <input type="checkbox" name="q5" value="Dirty or unsafe water">
+                        Dirty or unsafe water
+                    </label>
+                    <label class="option checkbox-option">
+                        <input type="checkbox" name="q5" value="Illness or pests (rats, mosquitoes)">
+                        Illness or pests (rats, mosquitoes)
+                    </label>
+                    <label class="option checkbox-option">
+                        <input type="checkbox" name="q5" value="Damage to the environment">
+                        Damage to the environment
+                    </label>
+                    <label class="option checkbox-option">
+                        <input type="checkbox" name="q5" value="No problems noticed">
+                        No problems noticed
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Question 6 -->
+            <div class="question-container">
+                <div class="question-text">
+                    <span class="question-number">6</span>
+                    Would you be willing to participate in community activities to protect wetlands and save water?
+                </div>
+                <div class="options-container">
+                    <label class="option">
+                        <input type="radio" name="q6" value="Yes" required>
+                        Yes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6" value="Maybe">
+                        Maybe
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6" value="No">
+                        No
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Question 7 -->
+            <div class="question-container">
+                <div class="question-text">
+                    <span class="question-number">7</span>
+                    What support would help your community reduce dumping and protect wetlands?
+                </div>
+                <div class="options-container">
+                    <label class="option checkbox-option">
+                        <input type="checkbox" name="q7" value="Regular refuse collection">
+                        Regular refuse collection
+                    </label>
+                    <label class="option checkbox-option">
+                        <input type="checkbox" name="q7" value="Designated dumping or recycling points">
+                        Designated dumping or recycling points
+                    </label>
+                    <label class="option checkbox-option">
+                        <input type="checkbox" name="q7" value="More waste bins">
+                        More waste bins
+                    </label>
+                    <label class="option checkbox-option">
+                        <input type="checkbox" name="q7" value="Community clean-up programs">
+                        Community clean-up programs
+                    </label>
+                    <label class="option checkbox-option">
+                        <input type="checkbox" name="q7" value="Environmental education and awareness">
+                        Environmental education and awareness
+                    </label>
+                    <label class="option checkbox-option">
+                        <input type="checkbox" name="q7" value="Job opportunities linked to waste or environmental care">
+                        Job opportunities linked to waste or environmental care
+                    </label>
+                </div>
+            </div>
+            
+            <div class="submit-container">
+                <button type="submit" class="submit-btn">Submit Survey</button>
+            </div>
+        </form>
+        
+        <div class="footer">
+            <p>Rand Water &copy; 2023. Drop by Drop Campaign. All responses are anonymous and will be used for community improvement purposes only.</p>
+        </div>
+    </div>
+
+    <script>
+        // Handle "Other" input display for Question 2
+        const q2OtherRadio = document.getElementById('q2-other');
+        const q2OtherInput = document.getElementById('q2-other-input');
+        
+        q2OtherRadio.addEventListener('change', function() {
+            if (this.checked) {
+                q2OtherInput.style.display = 'inline-block';
+                q2OtherInput.required = true;
+            }
+        });
+        
+        // Hide "Other" input if another option is selected
+        const q2Radios = document.querySelectorAll('input[name="q2"]');
+        q2Radios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value !== 'Other') {
+                    q2OtherInput.style.display = 'none';
+                    q2OtherInput.required = false;
+                    q2OtherInput.value = '';
+                } else {
+                    q2OtherInput.style.display = 'inline-block';
+                    q2OtherInput.required = true;
+                }
+            });
+        });
+        
+        // Form submission handling
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect all form data
+            const formData = new FormData(this);
+            const surveyData = {};
+            
+            // Process radio buttons
+            const radioNames = ['q1', 'q2', 'q3', 'q4', 'q6'];
+            radioNames.forEach(name => {
+                const value = formData.get(name);
+                if (name === 'q2' && value === 'Other') {
+                    surveyData[name] = `Other: ${q2OtherInput.value}`;
+                } else {
+                    surveyData[name] = value;
+                }
+            });
+            
+            // Process checkboxes
+            const checkboxNames = ['q5', 'q7'];
+            checkboxNames.forEach(name => {
+                const values = formData.getAll(name);
+                surveyData[name] = values;
+            });
+            
+            // In a real application, you would send this data to a server
+            // For this example, we'll just show an alert and log to console
+            console.log('Survey submitted with data:', surveyData);
+            
+            alert('Thank you for completing the survey! Your responses have been recorded.');
+            
+            // Reset form
+            this.reset();
+            q2OtherInput.style.display = 'none';
+            q2OtherInput.required = false;
+        });
+    </script>
+</body>
+</html>
