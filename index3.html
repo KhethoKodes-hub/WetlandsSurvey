@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Drop by Drop Wetlands Survey - Sebokeng</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f7f7;
+    padding: 40px;
+}
+
+.container {
+    background: white;
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #00695c;
+}
+
+.section-title {
+    margin-top: 30px;
+    color: #004d40;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.checkbox-group,
+.radio-group {
+    margin-top: 8px;
+}
+
+button {
+    margin-top: 25px;
+    padding: 12px;
+    background: #00796b;
+    color: white;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #004d40;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>DROP BY DROP WETLANDS SURVEY</h1>
+<p><strong>Location:</strong> Sebokeng Zone 3</p>
+
+<form id="surveyForm">
+
+<div class="section-title">Section A: Background Information</div>
+
+<label>1. Which best describes a wetland?</label>
+<select name="entry.2081198584" required>
+<option value="">Select</option>
+<option>An area with water, plants, and soil that helps store water and prevent flooding</option>
+<option>A dumping area or open land</option>
+<option>A river or a dan</option>
+<option>A dumping area or open land</option>
+<option>I am not sure</option>
+</select>
+
+<label>2. How long have you lived or operated in this area?</label>
+<select name="entry.746701956" required>
+<option value="">Select</option>
+<option>Less than 1 year</option>
+<option>1–5 years</option>
+<option>6–10 years</option>
+<option>More than 10 years</option>
+</select>
+
+<label>3. How close is your home/school to the wetland or river?</label>
+<select name="entry.351975346" required>
+<option value="">Select</option>
+<option>Less than 100 m</option>
+<option>100–300 m</option>
+<option>More than 300 m</option>
+</select>
+
+<div class="section-title">Section B: Awareness and Use</div>
+
+<label>4. What do you understand the purpose of wetlands and rivers to be?</label>
+<textarea name="entry.1663346588" required></textarea>
+
+<label>5. Do you or learners use the wetland or river for any of the following?</label>
+<div class="checkbox-group">
+<input type="checkbox" name="entry.1065404107" value="Walking/recreation"> Walking/recreation<br>
+<input type="checkbox" name="entry.1065404107" value="Washing"> Washing<br>
+<input type="checkbox" name="entry.1065404107" value="Fishing"> Fishing<br>
+<input type="checkbox" name="entry.1065404107" value="Livestock grazing"> Livestock grazing<br>
+<input type="checkbox" name="entry.1065404107" value="No use"> No use<br>
+<input type="checkbox" name="entry.1065404107" value="Other"> Other
+</div>
+
+<div class="section-title">Section C: Pollution</div>
+
+<label>6. What types of pollution have you noticed?</label>
+<div class="checkbox-group">
+<input type="checkbox" name="entry.1987820829" value="Solid waste/dumping"> Solid waste/dumping<br>
+<input type="checkbox" name="entry.1987820829" value="Sewer overflow"> Sewer overflow<br>
+<input type="checkbox" name="entry.1987820829" value="Industrial waste"> Industrial waste<br>
+<input type="checkbox" name="entry.1987820829" value="Bad smells"> Bad smells<br>
+<input type="checkbox" name="entry.1987820829" value="Dead animals/fish"> Dead animals/fish<br>
+<input type="checkbox" name="entry.1987820829" value="Other"> Other
+</div>
+
+<label>7. How often do sewer overflows occur?</label>
+<select name="entry.1822020371" required>
+<option value="">Select</option>
+<option>Never</option>
+<option>Rarely</option>
+<option>Sometimes</option>
+<option>Often</option>
+<option>Very often</option>
+</select>
+
+<label>8. Where do you think most pollution comes from?</label>
+<select name="entry.851039629" required>
+<option value="">Select</option>
+<option>Households</option>
+<option>Sewer infrastructure</option>
+<option>Businesses</option>
+<option>Illegal dumping</option>
+<option>Municipality</option>
+<option>Unsure</option>
+</select>
+
+<div class="section-title">Section D: Health & Education</div>
+
+<label>9. Have you experienced health problems linked to the polluted wetland?</label>
+<select name="entry.280397485" required>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+
+<label>If yes, describe:</label>
+<input type="text" name="entry.1197218177">
+
+<label>10. Does pollution affect school activities or learning?</label>
+<select name="entry.1354946607" required>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+<option>Not sure</option>
+</select>
+
+<label>If yes, explain how:</label>
+<input type="text" name="entry.1307391551">
+
+<div class="section-title">Section E: Community Action</div>
+
+<label>11. Have you reported pollution before?</label>
+<select name="entry.644591387" required>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+
+<label>If yes, what was the response?</label>
+<input type="text" name="entry.1414677183">
+
+<label>12. Are you willing to participate in clean-ups?</label>
+<select name="entry.75552176" required>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+<option>Maybe</option>
+</select>
+
+<label>13. What solutions do you suggest to reduce pollution?</label>
+<textarea name="entry.1965165273" required></textarea>
+
+<button type="submit">Submit Survey</button>
+
+</form>
+</div>
+
+<script>
+document.getElementById("surveyForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSfz0st3Wcr8K-pbowUYdpLqGtPf4p0IisXAQpleOv6L0cP5Xw/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+    })
+    .then(() => {
+        alert("Thank you! Your response has been submitted.");
+        this.reset();
+    })
+    .catch(() => {
+        alert("Submission failed.");
+    });
+});
+</script>
+
+</body>
+</html>
