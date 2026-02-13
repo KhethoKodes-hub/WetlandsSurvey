@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rand Water: Drop by Drop Wetlands Survey - Sebokeng</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #e6f2ff;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0066cc, #0099cc);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .header h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .survey-form {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 5px solid #0066cc;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #004080;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: bold;
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .question-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #0066cc;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 18px;
+            color: #004080;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background: #f1f9ff;
+            border-radius: 6px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .option:hover {
+            background: #e6f2ff;
+            border-color: #0066cc;
+            transform: translateX(5px);
+        }
+        
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+            cursor: pointer;
+        }
+        
+        .text-input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: border-color 0.3s;
+        }
+        
+        .text-input:focus, textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .other-input {
+            margin-left: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            display: none;
+            width: 200px;
+        }
+        
+        .conditional {
+            margin-top: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #28a745;
+            background: #f8fff9;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        .submit-container {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #eaeaea;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #0066cc, #0099cc);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            background: #f8fafc;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            .survey-form {
+                padding: 15px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .question {
+                padding: 15px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .other-input {
+                width: 100%;
+                margin-top: 10px;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>DROP BY DROP WETLANDS SURVEY QUESTIONNAIRE</h1>
+            <h2>Rand Water: Wetlands & River Survey - Sebokeng Zone 3</h2>
+            <p>Target group: Households and school communities near wetlands and the river</p>
+        </div>
+        
+        <form class="survey-form" id="surveyForm">
+            <!-- Section A: Background Information -->
+            <div class="section">
+                <div class="section-title">Section A: Background Information</div>
+                
+                <!-- Question 1 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">1</span>
+                        Which of the following best describes a wetland?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1" value="An area with water, plants, and soil that helps store water and prevent flooding" required>
+                            An area with water, plants, and soil that helps store water and prevent flooding
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="A dumping area or open land">
+                            A dumping area or open land
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="A river or a dam">
+                            A river or a dam
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="I am not sure">
+                            I am not sure
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Question 2 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">2</span>
+                        How long have you lived or operated (house/school) in this area near the wetland or river?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q2" value="Less than 1 year" required>
+                            Less than 1 year
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="1–5 years">
+                            1–5 years
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="6–10 years">
+                            6–10 years
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q2" value="More than 10 years">
+                            More than 10 years
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Question 3 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">3</span>
+                        How close is your home/school to the wetland or river?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q3" value="Less than 100 m" required>
+                            Less than 100 m
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="100–300 m">
+                            100–300 m
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="More than 300 m">
+                            More than 300 m
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section B: Awareness and Use of the Wetland -->
+            <div class="section">
+                <div class="section-title">Section B: Awareness and Use of the Wetland</div>
+                
+                <!-- Question 4 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">4</span>
+                        What do you understand the purpose of wetlands and rivers to be?
+                        <span style="font-size: 14px; color: #666; display: block; margin-top: 5px;">(Open-ended)</span>
+                    </div>
+                    <textarea name="q4" placeholder="Type your answer here..."></textarea>
+                </div>
+                
+                <!-- Question 5 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">5</span>
+                        Do you or learners use the wetland or river for any of the following?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="checkbox" name="q5" value="Walking/recreation">
+                            Walking/recreation
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q5" value="Washing">
+                            Washing
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q5" value="Fishing">
+                            Fishing
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q5" value="Livestock grazing">
+                            Livestock grazing
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q5" value="No use">
+                            No use
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q5" value="Other" id="q5-other">
+                            Other (specify)
+                            <input type="text" class="other-input" id="q5-other-input" placeholder="Please specify">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section C: Pollution and Environmental Problems -->
+            <div class="section">
+                <div class="section-title">Section C: Pollution and Environmental Problems</div>
+                
+                <!-- Question 6 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">6</span>
+                        What types of pollution have you noticed in the wetland or river?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="checkbox" name="q6" value="Solid waste/dumping">
+                            Solid waste/dumping
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q6" value="Sewer overflow">
+                            Sewer overflow
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q6" value="Industrial waste">
+                            Industrial waste
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q6" value="Bad smells">
+                            Bad smells
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q6" value="Dead animals/fish">
+                            Dead animals/fish
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q6" value="Other" id="q6-other">
+                            Other (specify)
+                            <input type="text" class="other-input" id="q6-other-input" placeholder="Please specify">
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Question 7 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">7</span>
+                        How often do sewer overflows occur in this area?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q7" value="Never" required>
+                            Never
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="Rarely">
+                            Rarely
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="Sometimes">
+                            Sometimes
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="Often">
+                            Often
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="Very often">
+                            Very often
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Question 8 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">8</span>
+                        Where do you think most of the pollution comes from?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="checkbox" name="q8" value="Households">
+                            Households
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q8" value="Sewer infrastructure">
+                            Sewer infrastructure
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q8" value="Businesses">
+                            Businesses
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q8" value="Illegal dumping">
+                            Illegal dumping
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q8" value="Municipality">
+                            Municipality
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="q8" value="Unsure">
+                            Unsure
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section D: Health, Safety, and Education Impacts -->
+            <div class="section">
+                <div class="section-title">Section D: Health, Safety, and Education Impacts</div>
+                
+                <!-- Question 9 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">9</span>
+                        Have you or learners experienced health problems you believe are linked to the polluted wetland or river?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q9" value="Yes" id="q9-yes" required>
+                            Yes
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="No">
+                            No
+                        </label>
+                    </div>
+                    <div class="conditional" id="q9-details">
+                        <div style="font-weight: 600; margin-bottom: 10px; color: #155724;">
+                            If yes, please describe (e.g. skin rashes, diarrhoea, bad smells, mosquitoes):
+                        </div>
+                        <textarea name="q9_details" placeholder="Describe health problems..."></textarea>
+                    </div>
+                </div>
+                
+                <!-- Question 10 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">10</span>
+                        Does pollution in the wetland or river affect school activities or learning? 
+                        <span style="font-size: 14px; color: #666;">(for schools)</span>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q10" value="Yes" id="q10-yes" required>
+                            Yes
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="No">
+                            No
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="Not sure">
+                            Not sure
+                        </label>
+                    </div>
+                    <div class="conditional" id="q10-details">
+                        <div style="font-weight: 600; margin-bottom: 10px; color: #155724;">
+                            If yes, explain how:
+                        </div>
+                        <textarea name="q10_details" placeholder="Explain how pollution affects school activities..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section E: Community Action and Solutions -->
+            <div class="section">
+                <div class="section-title">Section E: Community Action and Solutions</div>
+                
+                <!-- Question 11 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">11</span>
+                        Have you ever reported pollution, sewer spills, or dumping to the municipality or school authorities?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q11" value="Yes" id="q11-yes" required>
+                            Yes
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q11" value="No">
+                            No
+                        </label>
+                    </div>
+                    <div class="conditional" id="q11-details">
+                        <div style="font-weight: 600; margin-bottom: 10px; color: #155724;">
+                            If yes, what was the response?
+                        </div>
+                        <textarea name="q11_details" placeholder="Describe the response..."></textarea>
+                    </div>
+                </div>
+                
+                <!-- Question 12 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">12</span>
+                        Are you willing to participate in wetland clean-ups or awareness programs?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q12" value="Yes" required>
+                            Yes
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q12" value="No">
+                            No
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q12" value="Maybe">
+                            Maybe
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Question 13 -->
+                <div class="question">
+                    <div class="question-text">
+                        <span class="question-number">13</span>
+                        What solutions do you suggest for reducing pollution and protecting the wetland and river?
+                        <span style="font-size: 14px; color: #666; display: block; margin-top: 5px;">(Open-ended)</span>
+                    </div>
+                    <textarea name="q13" placeholder="Type your suggestions here..."></textarea>
+                </div>
+            </div>
+            
+            <div class="submit-container">
+                <button type="submit" class="submit-btn">Submit Survey</button>
+                <div class="message" id="message">
+                    <h3>Thank You!</h3>
+                    <p>Your response has been submitted successfully.</p>
+                </div>
+            </div>
+        </form>
+        
+        <div class="footer">
+            <p><strong>Rand Water: Drop by Drop Campaign</strong></p>
+            <p>Wetlands & River Survey Questionnaire | Sebokeng Zone 3</p>
+            <p>All responses are anonymous and confidential</p>
+        </div>
+    </div>
+
+    <script>
+        // Handle "Other" inputs
+        function setupOtherInput(checkboxId, inputId) {
+            const checkbox = document.getElementById(checkboxId);
+            const input = document.getElementById(inputId);
+            
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    input.style.display = 'inline-block';
+                } else {
+                    input.style.display = 'none';
+                    input.value = '';
+                }
+            });
+            
+            // Hide initially
+            input.style.display = 'none';
+        }
+        
+        // Setup both "Other" inputs
+        setupOtherInput('q5-other', 'q5-other-input');
+        setupOtherInput('q6-other', 'q6-other-input');
+        
+        // Handle conditional questions
+        document.getElementById('q9-yes').addEventListener('change', function() {
+            document.getElementById('q9-details').style.display = 'block';
+        });
+        
+        document.querySelectorAll('input[name="q9"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'Yes') {
+                    document.getElementById('q9-details').style.display = 'block';
+                } else {
+                    document.getElementById('q9-details').style.display = 'none';
+                    document.querySelector('textarea[name="q9_details"]').value = '';
+                }
+            });
+        });
+        
+        document.getElementById('q10-yes').addEventListener('change', function() {
+            document.getElementById('q10-details').style.display = 'block';
+        });
+        
+        document.querySelectorAll('input[name="q10"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'Yes') {
+                    document.getElementById('q10-details').style.display = 'block';
+                } else {
+                    document.getElementById('q10-details').style.display = 'none';
+                    document.querySelector('textarea[name="q10_details"]').value = '';
+                }
+            });
+        });
+        
+        document.getElementById('q11-yes').addEventListener('change', function() {
+            document.getElementById('q11-details').style.display = 'block';
+        });
+        
+        document.querySelectorAll('input[name="q11"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'Yes') {
+                    document.getElementById('q11-details').style.display = 'block';
+                } else {
+                    document.getElementById('q11-details').style.display = 'none';
+                    document.querySelector('textarea[name="q11_details"]').value = '';
+                }
+            });
+        });
+        
+       // SIMPLE EMAIL SUBMISSION - NO GOOGLE FORMS NEEDED!
+document.getElementById('surveyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.querySelector('.submit-btn');
+    const message = document.getElementById('message');
+    
+    // Collect all data
+    const formData = new FormData(this);
+    let emailBody = "🎯 RAND WATER WETLANDS SURVEY RESPONSE 🎯\n\n";
+    emailBody += "📍 Location: Sebokeng Zone 3\n";
+    emailBody += "🕐 Timestamp: " + new Date().toLocaleString('en-ZA') + "\n";
+    emailBody += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
+    
+    // Section A
+    emailBody += "📋 SECTION A: BACKGROUND INFORMATION\n";
+    emailBody += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+    emailBody += "1. Which best describes a wetland?\n   → " + (formData.get('q1') || 'No answer') + "\n\n";
+    emailBody += "2. How long lived/operated here?\n   → " + (formData.get('q2') || 'No answer') + "\n\n";
+    emailBody += "3. How close to wetland/river?\n   → " + (formData.get('q3') || 'No answer') + "\n\n";
+    
+    // Section B
+    emailBody += "📋 SECTION B: AWARENESS AND USE\n";
+    emailBody += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+    emailBody += "4. Purpose of wetlands/rivers?\n   → " + (formData.get('q4') || 'No answer') + "\n\n";
+    emailBody += "5. How use wetland/river?\n   → " + (formData.getAll('q5').join(', ') || 'No use') + "\n\n";
+    
+    // Section C
+    emailBody += "📋 SECTION C: POLLUTION PROBLEMS\n";
+    emailBody += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+    emailBody += "6. Types of pollution noticed?\n   → " + (formData.getAll('q6').join(', ') || 'None') + "\n\n";
+    emailBody += "7. Sewer overflow frequency?\n   → " + (formData.get('q7') || 'No answer') + "\n\n";
+    emailBody += "8. Where pollution comes from?\n   → " + (formData.getAll('q8').join(', ') || 'Unsure') + "\n\n";
+    
+    // Section D
+    emailBody += "📋 SECTION D: HEALTH & EDUCATION\n";
+    emailBody += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+    emailBody += "9. Health problems linked to pollution?\n   → " + (formData.get('q9') || 'No') + "\n";
+    if (formData.get('q9') === 'Yes') {
+        emailBody += "   Details: " + (formData.get('q9_details') || 'No details') + "\n";
+    }
+    emailBody += "\n10. Affects school activities?\n   → " + (formData.get('q10') || 'No answer') + "\n";
+    if (formData.get('q10') === 'Yes') {
+        emailBody += "   Details: " + (formData.get('q10_details') || 'No details') + "\n";
+    }
+    emailBody += "\n";
+    
+    // Section E
+    emailBody += "📋 SECTION E: COMMUNITY ACTION\n";
+    emailBody += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+    emailBody += "11. Ever reported pollution?\n   → " + (formData.get('q11') || 'No') + "\n";
+    if (formData.get('q11') === 'Yes') {
+        emailBody += "   Response: " + (formData.get('q11_details') || 'No response') + "\n";
+    }
+    emailBody += "\n12. Willing to participate?\n   → " + (formData.get('q12') || 'No answer') + "\n\n";
+    emailBody += "13. Suggested solutions?\n   → " + (formData.get('q13') || 'No suggestions') + "\n\n";
+    
+    emailBody += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+    emailBody += "✅ SURVEY COMPLETED ✅\n";
+    
+    // Disable button and show message
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Opening Email...';
+    
+    message.innerHTML = `
+        <h3>📧 Opening Email App...</h3>
+        <p>Your responses are ready! Please:</p>
+        <ol style="text-align: left; margin: 15px 0;">
+            <li>Send the email that opens</li>
+            <li>That's it! Response will be saved</li>
+        </ol>
+        <p><strong>Or click this button to copy responses:</strong></p>
+        <button onclick="copyToClipboard()" style="padding: 10px 20px; background: #0066cc; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 10px;">
+            📋 Copy Responses
+        </button>
+    `;
+    message.style.display = 'block';
+    
+    // Store responses locally too
+    try {
+        let responses = JSON.parse(localStorage.getItem('wetlandsSurvey')) || [];
+        responses.push({
+            timestamp: new Date().toLocaleString(),
+            q1: formData.get('q1'),
+            q2: formData.get('q2'),
+            q3: formData.get('q3'),
+            q4: formData.get('q4'),
+            q5: formData.getAll('q5').join(', '),
+            q6: formData.getAll('q6').join(', '),
+            q7: formData.get('q7'),
+            q8: formData.getAll('q8').join(', '),
+            q9: formData.get('q9'),
+            q9_details: formData.get('q9_details'),
+            q10: formData.get('q10'),
+            q10_details: formData.get('q10_details'),
+            q11: formData.get('q11'),
+            q11_details: formData.get('q11_details'),
+            q12: formData.get('q12'),
+            q13: formData.get('q13')
+        });
+        localStorage.setItem('wetlandsSurvey', JSON.stringify(responses));
+    } catch (e) {
+        console.log('Local storage save failed');
+    }
+    
+    // Store email body for copying
+    window.surveyEmailBody = emailBody;
+    
+    // Open email after 1 second
+    setTimeout(() => {
+        // 🟢🟢🟢 CHANGE THIS EMAIL TO YOUR REAL EMAIL! 🟢🟢🟢
+        const yourEmail = 'your-email@randwater.co.za'; // ⬅️ CHANGE THIS!
+        const subject = 'Rand Water Wetlands Survey Response - Sebokeng';
+        window.location.href = `mailto:${yourEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    }, 1000);
+    
+    // Scroll to message
+    message.scrollIntoView({ behavior: 'smooth' });
+    
+    // Reset form after 10 seconds
+    setTimeout(() => {
+        this.reset();
+        document.querySelectorAll('.conditional').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.other-input').forEach(el => {
+            el.style.display = 'none';
+            el.value = '';
+        });
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Another Response';
+        message.style.display = 'none';
+    }, 10000);
+});
+
+// Copy to clipboard function
+function copyToClipboard() {
+    if (window.surveyEmailBody) {
+        navigator.clipboard.writeText(window.surveyEmailBody)
+            .then(() => {
+                alert('✅ Responses copied to clipboard! You can paste them anywhere.');
+            })
+            .catch(() => {
+                alert('⚠️ Could not copy. Please manually select and copy the text.');
+            });
+    }
+}
+
+// Show download button if responses exist
+window.addEventListener('load', function() {
+    const responses = JSON.parse(localStorage.getItem('wetlandsSurvey')) || [];
+    if (responses.length > 0) {
+        const downloadDiv = document.createElement('div');
+        downloadDiv.style.cssText = 'text-align: center; margin-bottom: 20px; padding: 15px; background: #e6f2ff; border-radius: 8px;';
+        downloadDiv.innerHTML = `
+            <p style="font-weight: bold; color: #004080; margin-bottom: 10px;">
+                📊 ${responses.length} response(s) saved in browser
+            </p>
+            <button onclick="downloadCSV()" style="padding: 10px 20px; background: #0066cc; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px;">
+                📥 Download All as CSV
+            </button>
+            <button onclick="clearResponses()" style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px;">
+                📧 Email All Responses
+            </button>
+            <p style="font-size: 12px; color: #666; margin-top: 10px;">
+                Data is stored locally. Download to save permanently.
+            </p>
+        `;
+        document.querySelector('.survey-form').prepend(downloadDiv);
+    }
+});
+
+// Download CSV function
+function downloadCSV() {
+    const responses = JSON.parse(localStorage.getItem('wetlandsSurvey')) || [];
+    
+    if (responses.length === 0) {
+        alert('No responses to download');
+        return;
+    }
+    
+    const headers = ['Timestamp', 'Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q9 Details', 'Q10', 'Q10 Details', 'Q11', 'Q11 Details', 'Q12', 'Q13'];
+    const csvRows = [headers.join(',')];
+    
+    responses.forEach(r => {
+        const row = headers.map(h => {
+            const key = h.toLowerCase().replace(' ', '_').replace(' details', '_details');
+            return `"${(r[key] || '').toString().replace(/"/g, '""')}"`;
+        });
+        csvRows.push(row.join(','));
+    });
+    
+    const csvString = csvRows.join('\n');
+    const blob = new Blob([csvString], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `randwater_survey_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+}
+
+// Email all responses function
+function emailAllResponses() {
+    const responses = JSON.parse(localStorage.getItem('wetlandsSurvey')) || [];
+    
+    if (responses.length === 0) {
+        alert('No responses to email');
+        return;
+    }
+    
+    let emailBody = "📊 ALL RAND WATER SURVEY RESPONSES\n\n";
+    emailBody += `Total responses: ${responses.length}\n`;
+    emailBody += "Date: " + new Date().toLocaleString() + "\n";
+    emailBody += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
+    
+    responses.forEach((r, index) => {
+        emailBody += `RESPONSE ${index + 1}\n`;
+        emailBody += "Time: " + (r.timestamp || 'Unknown') + "\n";
+        emailBody += "Q1: " + (r.q1 || '') + "\n";
+        emailBody += "Q2: " + (r.q2 || '') + "\n";
+        emailBody += "Q13: " + (r.q13 || '') + "\n";
+        emailBody += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
+    });
+    
+    const yourEmail = 'kmngomezulu82@gmail.com'; 
+    const subject = `Rand Water Survey - ${responses.length} Responses`;
+    window.location.href = `mailto:${yourEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+}
+
+// Clear responses function
+function clearResponses() {
+    if (confirm('Delete all saved responses?')) {
+        localStorage.removeItem('wetlandsSurvey');
+        location.reload();
+    }
+}
+    </script>
+</body>
+</html>
